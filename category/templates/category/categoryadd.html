@@ -1,0 +1,17 @@
+{%extends 'products/parent.html'%}
+{%load static%}
+
+{% block content %}
+<form style="margin-top:20px" method="post">
+    {%csrf_token%}
+    <label >Product Name:</label>
+    <br>
+    <input type="text" name="pname">
+    <br>
+    <label>Product Category:</label>
+    <br>
+    <input type="text" name="pcat" >
+    <input type="submit" value="Add">
+</form>
+
+{% endblock %}
