@@ -2,12 +2,15 @@
 {%load static%}
 
 {% block content %}
-<form style="margin-top:20px" method="post">
+<form style="margin-top:20px" method="post" enctype="multipart/form-data">
     {%csrf_token%}
-    <label>Product Category:</label>
+    {{ form.as_p }}
     <br>
-    <input type="text" name="pcat" >
     <input type="submit" value="Add">
 </form>
+
+<div style="color:red">
+    {{textt}}
+</div>
 
 {% endblock %}

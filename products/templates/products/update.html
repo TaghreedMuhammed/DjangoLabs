@@ -4,19 +4,22 @@
 {% block content %}
 <form style="margin-top:20px" method="post" enctype="multipart/form-data">
     {%csrf_token%}
-    <label >Product Name:</label>
+    <label>Product Name:</label>
     <br>
-    <input type="text" name="pname">
+    <input type="text" name="pname" value="{{ product.name }}">
     <br>
     <label>Product Price:</label>
     <br>
     <input type="number" name="pprice" >
     <br>
-    <label >Image:</label>
+    <label>Product Image:</label>
     <br>
-    <input type="file" name="pimage">
-    <br>
-    <input type="submit" value="Add">
+    <input type="file" name="pimage" >
+    <br> <br>
+    <input type="submit" value="Update">
 </form>
+<div style="color:red">
+    {{text}}
+</div>
 
 {% endblock %}

@@ -68,6 +68,7 @@
                 <td><b>Images</b></td>
                 <td><b>Details</b></td>
                 <td><b>Actions</b></td>
+                <!-- <td><b>Category</b></td> -->
             </tr>
             {% for product in product_list %}
                 <tr style="text-align: center;">
@@ -77,9 +78,10 @@
                     <td><a href="{% url 'product_details' productId=product.id %}">Show Details</a></td>
                     <td>
                         <a href="{%url 'productsAdd' %}">New Product</a>
-                        <a href="">Update</a>
+                        <a href="{%url 'productsUpdate' productId=product.id%}">Update</a>
                         <a href="{% url 'productsDelete' productId=product.id %}">Delete</a>
                     </td>
+            
 
                 </tr>
             {% endfor %}
@@ -88,11 +90,15 @@
             <tr style="text-align: center;">
                 <td width="200px" >{{ product.id }}</td>
                 <td width="200px" >{{ product.name }}</td>
-                <td width="500px"></td>
+                <!-- <td width="200px" >{{ product.get_image_url }}</td> -->
+                <td width="500px"><img src="{{ product.get_image_url }}" class="bd-placeholder-img card-img-top" width="100%" height="225"></td>
+
                 <td><a href="{% url 'product_details' productId=product.id  %}">Show Details</a></td>
                 <td>
                     <a href="{%url 'productsAdd' %}">New Product</a>
-                    <a href="">Update</a>
+                    <a href="{%url 'productsAddForm' %}">New Product With Form</a>
+                    
+                    <a href="{%url 'productsUpdate' productId=product.id%}">Update</a>
                     <a href="{% url 'productsDelete' productId=product.id %}">Delete</a>
                 </td>
             </tr>
