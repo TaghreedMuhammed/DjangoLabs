@@ -61,6 +61,10 @@
         
         {% block content %}
         <h2>Products</h2>
+        
+        <button style="padding:10px;margin-bottom:10px;margin-left:10px;"><a href="{%url 'productsAddForm' %}" style="text-decoration: none;">New Product With Form</a></button> 
+       <button style="padding:10px;margin-bottom:10px;margin-left:10px;"><a href="{%url 'productsAdd' %}" style="text-decoration: none;">New Product</a></button> 
+       <br>
         <table border="1px" width="600px" height="500px">
             <tr style="text-align: center;">
                 <td height="50px"><b>ID</b></td>
@@ -70,21 +74,7 @@
                 <td><b>Actions</b></td>
                 <!-- <td><b>Category</b></td> -->
             </tr>
-            {% for product in product_list %}
-                <tr style="text-align: center;">
-                    <td width="200px">{{ product.id }}</td>
-                    <td width="200px">{{ product.Name }}</td>
-                    <td width="500px"><img src="{% static 'images/' %}{{ product.Image }}"  width="350px" height="225"></td>
-                    <td><a href="{% url 'product_details' productId=product.id %}">Show Details</a></td>
-                    <td>
-                        <a href="{%url 'productsAdd' %}">New Product</a>
-                        <a href="{%url 'productsUpdate' productId=product.id%}">Update</a>
-                        <a href="{% url 'productsDelete' productId=product.id %}">Delete</a>
-                    </td>
-            
-
-                </tr>
-            {% endfor %}
+         
             {% for product in database_product_list %}
             
             <tr style="text-align: center;">
@@ -93,13 +83,12 @@
                 <!-- <td width="200px" >{{ product.get_image_url }}</td> -->
                 <td width="500px"><img src="{{ product.get_image_url }}" class="bd-placeholder-img card-img-top" width="100%" height="225"></td>
 
-                <td><a href="{% url 'product_details' productId=product.id  %}">Show Details</a></td>
+                <td><button style="padding:10px;"><a href="{% url 'product_details' productId=product.id  %}" style="text-decoration: none;">Show Details</a></button></td>
                 <td>
-                    <a href="{%url 'productsAdd' %}">New Product</a>
-                    <a href="{%url 'productsAddForm' %}">New Product With Form</a>
                     
-                    <a href="{%url 'productsUpdate' productId=product.id%}">Update</a>
-                    <a href="{% url 'productsDelete' productId=product.id %}">Delete</a>
+                    
+                 <button style="padding:10px;"><a href="{%url 'productsUpdate' productId=product.id%}" style="text-decoration: none;">Update</a></button>   
+                   <button style="padding:10px;"> <a href="{% url 'productsDelete' productId=product.id %}" style="text-decoration: none;">Delete</a></button>
                 </td>
             </tr>
         {% endfor %}

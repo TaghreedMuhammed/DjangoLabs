@@ -50,24 +50,28 @@ def productsDelete(request,productId):
      
      return HttpResponseRedirect('/Products/')
 
-def productsUpdate(request,productId):
-    product=Products.objects.get(id=productId)
-    context={'product':product}
-    if(request.method=='POST'):
-        if (request.POST['pname'] != None ):
-            Products.objects.filter(id=productId).update(name=request.POST['pname'])
-        request.POST['pname']
-        # Products.objects.filter(id=productId).update(image=request.FILES['pimage'])
-        # request.FILES['pimage']
-        # Products.objects.filter(id=productId).update(name=request.POST['pprice'])
-        # request.POST['pprice']
+def productsUpdate(request, productId):
+    product = Products.objects.get(id=productId)
+    context = {'product': product}
 
-    
-       
+    if request.method == 'POST':
+        pname = request.POST['pname']
+        if 'pimage' in request.FILES:
+            pimage = request.FILES['pimage']
+
+        if 'pprice' in request.POST:
+            pprice = request.POST['pprice']
+            product.name = pname
+            product.image = pimage
+            product.price = pprice
+            product.save()
+
         return HttpResponseRedirect('/Products/')
     else:
-        context['text']="Please Fill all fields"
-    return render(request,'products/update.html',context)
+        context['text'] = "Please Fill all fields"
+
+    return render(request, 'products/update.html', context)
+
     
 
 def productsAddForm(request):
