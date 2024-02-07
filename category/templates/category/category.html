@@ -3,7 +3,8 @@
 
 {% block content %}
 <div>
-    <a href="{%url 'categoryAdd'%}">New Category</a>
+  <button style="padding:10px;margin: 10px;"><a href="{%url 'categoryAdd'%}" style="text-decoration: none;">New Category</a></button>  
+    <button style="padding:10px;"><a href="{%url 'categoryForm'%}" style="text-decoration: none;">New Category With Form</a></button>
 </div>
         <table border="1px" width="600px" height="500px">
             <tr style="text-align: center;">
@@ -13,21 +14,32 @@
             </tr>
           
     
-        {% for product in database_product_category %}
+            {% for category in database_product_category %}
+            <tr style="text-align: center;">
+                <td width="200px">{{ category.id }}</td>
+                <td width="200px">{{ category.name }}</td>
+                <td>
+                    <button style="padding:10px;"><a href="{% url 'categoryDetails' pk=category.pk %}" style="text-decoration: none;">Show</a></button>
+                    <button style="padding:10px;"><a href="{% url 'categoryUpdatee' pk=category.pk %}" style="text-decoration: none;">Update</a></button>
+                    <button style="padding:10px;"><a href="{% url 'categoryDelete' pk=category.pk %}" style="text-decoration: none;">Delete</a></button>
+                </td>
+            </tr>
+            {% endfor %}
+    {% for category in categories  %}
       
             
-        <tr style="text-align: center;">
-            <td width="200px" >{{ product.id }}</td>
-            <td width="200px" >{{ product.name }}</td>
-        
-
-            
-            <td>
-                <a href="{% url 'categoryDelete' productId=product.id %}">Delete</a>
-            </td>
-        </tr>
-    {% endfor %}
+    <tr style="text-align: center;">
+        <td width="200px" >{{ product.id }}</td>
+        <td width="200px" >{{ product.name }}</td>
     
+
+        
+        <td>
+            <button style="padding:10px;"><a href="{% url 'categoryUpdate' productId=product.id %}">Update</a></button>
+            <button style="padding:10px;"><a href="{% url 'categoryDelete' productId=product.id %}">Delete</a></button>
+        </td>
+    </tr>
+{% endfor %}
         
     </div>
 

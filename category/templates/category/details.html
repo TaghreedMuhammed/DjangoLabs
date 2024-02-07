@@ -1,0 +1,16 @@
+{%extends 'products/parent.html'%}
+{%load static%}
+
+{% block content %}
+{{category}}
+<div>
+    <span>ID :</span>
+    <span>{{ category.id }}</span>
+    <br>
+    <span>Name :</span>
+    <span>{{ category.name }}</span>
+
+</div>
+   
+
+{% endblock %}

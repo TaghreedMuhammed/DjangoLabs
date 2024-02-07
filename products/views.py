@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from django.http import HttpResponseRedirect
 from .forms import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 product_list = [
     {'id': 1, 'Name': 'Converse', 'Image': 'convwomen.jpg', 'category':'Women','price':"700"},
@@ -32,6 +33,7 @@ def product_details(request, productId):
 def about(request):
    return render(request,'products/about.html')
 
+@login_required
 def productsAdd(request):
     if(request.method=='POST'):
         Products.objects.create(name=request.POST['pname'],
@@ -45,11 +47,13 @@ def productsAdd(request):
     # context={'Products':Products.objects.all()}
     return render(request,'products/add.html')
 
+@login_required
 def productsDelete(request,productId):
      Products.objects.filter(id=productId).delete()
      
      return HttpResponseRedirect('/Products/')
 
+@login_required
 def productsUpdate(request, productId):
     product = Products.objects.get(id=productId)
     context = {'product': product}
@@ -73,7 +77,7 @@ def productsUpdate(request, productId):
     return render(request, 'products/update.html', context)
 
     
-
+@login_required
 def productsAddForm(request):
     form = ProductForm()
     context = {'form': form}

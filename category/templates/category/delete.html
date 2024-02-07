@@ -1,0 +1,12 @@
+{%extends 'products/parent.html'%}
+{%load static%}
+
+{% block content %}
+<form method="post" >
+   
+    {%csrf_token%}
+<input type="submit" value="Are You Sure You Want To Delete?" style="padding: 10px; margin:10px;">
+
+</form>
+<button style="padding:10px; margin:10px;"><a href="{%url 'category' %}" style="text-decoration: none;">Cancel</a></button>
+{% endblock %}
